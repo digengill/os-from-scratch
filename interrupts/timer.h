@@ -1,0 +1,8 @@
+#ifndef TIMER_H
+#define TIMER_H
+
+#include "types.h"
+#include "../kernel/ports.h"
+void init_timer(u32 frequency);
+
+#endif

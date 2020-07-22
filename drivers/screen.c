@@ -1,5 +1,5 @@
 #include "screen.h"
-#include "ports.h"
+#include "../kernel/ports.h"
 void print_char ( char character , int col , int row , char attribute_byte );
 int get_cursor();
 void set_cursor(int offset);
@@ -68,7 +68,7 @@ void print_char ( char character , int col , int row , char attribute_byte ) {
 	offset += 2;
 	// Make scrolling adjustment , for when we reach the bottom
 	// of the screen .
-	//offset = handle_scrolling(offset);
+	offset = handle_scrolling(offset);
 	// Update the cursor position on the screen device .
 	set_cursor ( offset );
 
@@ -97,4 +97,26 @@ int get_screen_offset(int col,int row)
 {
 	return ((row*80)+ col) *2;
 
+}
+
+int handle_scrolling(int cursor_offset)
+{
+	// if cursor is still within screen, return normally.
+	if (cursor_offset < MAX_ROWS*MAX_COLS*2)
+	{
+		return cursor_offset;
+	}
+	// Shift each row 1 row up.	
+	for (int i = 1 ; i < MAX_ROWS; i++)
+	{
+		memory_copy(get_screen_offset(0,i) + VIDEO_ADDRESS, get_screen_offset(0,i-1)+VIDEO_ADDRESS, MAX_COLS*2);
+	
+	}
+
+	char * last_line = get_screen_offset(0 , MAX_ROWS -1) + VIDEO_ADDRESS ;
+	for (int i =0; i < MAX_COLS *2; i ++) {
+		last_line [ i ] = 0;
+	}
+	cursor_offset -= 2* MAX_COLS ;
+	return cursor_offset;
 }
