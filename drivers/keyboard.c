@@ -5,7 +5,8 @@ static void keyboard_callback(registers_t regs)
 {
 	char s[4];
 	u8 scancode = port_byte_in(0x60);
-	//print(itoa(scancode, s, 16));	
+	print(itoa(scancode, s, 16));	
+	print("\n");
 	decode_scancode(scancode);
 }
 
@@ -66,7 +67,7 @@ switch(scancode) {
             break;
         case 0x0E:
             print("Backspace");
-            break;
+	    break;
         case 0x0F:
             print("        ");
             break;

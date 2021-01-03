@@ -1,3 +1,6 @@
+#ifndef ISR_H
+#define ISR_H
+
 #include "types.h"
 #include "../kernel/ports.h"
 #include "../kernel/helper.h"
@@ -29,3 +32,4 @@ typedef struct registers
 
 typedef void (*isr_t)(registers_t);
 void register_interrupt_handler(u8 n, isr_t handler);
+#endif

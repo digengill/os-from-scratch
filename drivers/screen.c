@@ -1,9 +1,11 @@
 #include "screen.h"
 #include "../kernel/ports.h"
+#include "../kernel/helper.h"
 void print_char ( char character , int col , int row , char attribute_byte );
 int get_cursor();
 void set_cursor(int offset);
 int get_screen_offset(int col,int row);
+int handle_scrolling(int cursor_offset);
 void print_at ( char * message , int col , int row ) {
 // Update the cursor if col and row not negative .
 	if ( col >= 0 && row >= 0) 

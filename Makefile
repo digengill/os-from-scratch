@@ -6,7 +6,7 @@ OBJ = ${C_SOURCES:.c=.o interrupts/interrupt.o}
 all: os-image.bin #disk.img
 
 run: all
-	qemu-system-i386 -fda os-image.bin
+	qemu-system-i386 -fda  os-image.bin
 #disk.img: os-image.bin
 #	dd if=/dev/zero of=$@ bs=1024
 #	dd if=$< of=$@ conv=notrunc
@@ -28,7 +28,7 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 	nasm $< -f bin -I 'boot/' -o $@
 # Clear all generated files
 clean:
-	rm -fr *.bin boot/*.bin *.dis kernel/*.o interrupts/*.o os-image os-image.bin *.map
+	rm -fr *.bin boot/*.bin *.dis kernel/*.o interrupts/*.o drivers/*.o os-image os-image.bin *.map
 # Dissassemble the kernel- for debugging.
 kernel.dis: kernel.bin
 	ndisasm -b 32 $< > $@

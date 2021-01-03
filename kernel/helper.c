@@ -1,27 +1,21 @@
 #include "helper.h"
-
-
 void reverse(char* str, int i);
-
-
-
 void memory_copy(char* source, char* dest, int no_bytes)
 {
 	for (int i = 0 ; i < no_bytes; i++)
 	{
 		*(dest+i) = *(source+i);
-	
 	}
-
-
-
 }
-
-
-
-
-
-
+void *memset(void *str, int c, int n)
+{
+	unsigned char *p = str;
+	for (int i = 0 ; i < n ; i++)
+	{
+		*p = c;
+	       	p++;	
+	}
+}
 
 char* itoa(int num, char* str, int base) 
 { 
