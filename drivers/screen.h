@@ -18,10 +18,6 @@
 void print_at( char* message, int col, int row);
 void print(char *message);
 
-void cursor_move_left();
-void cursor_move_right();
-void cursor_move_up();
-void cursor_move_down();
 
 void clear_screen();
 void print_char ( char character , int col , int row , char attribute_byte );

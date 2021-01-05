@@ -4,15 +4,13 @@
 #include "../interrupts/timer.h"
 #include "../drivers/keyboard.h"
 #include "helper.h"
-#include "../interrupts/paging.h"
 #include "../interrupts/types.h"
 void main() {
     /* Test the interrupts */
 	init_idt();
-//	asm volatile("sti");
+	asm volatile("sti");
 //	init_timer(50);
 	init_keyboard();
-	char str[10];
 //	print(itoa(30, str,16));
 //	initialise_paging();
  //   	u32 *ptr = (u32*)0xA000000;
